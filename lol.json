@@ -1,0 +1,47 @@
+[
+ {
+  "Player": "Zeus",
+  "Role": "Top",
+  "KDA": "3.2",
+  "Kill participation": "63.2%",
+  "Vision score": "1",
+  "Damage": "25",
+  "Gold": "21.9"
+ },
+ {
+  "Player": "Oner",
+  "Role": "Jungle",
+  "KDA": "4.5",
+  "Kill participation": "68.2%",
+  "Vision score": "1.75",
+  "Damage": "14.5",
+  "Gold": "18.7"
+ },
+ {
+  "Player": "Faker",
+  "Role": "Mid",
+  "KDA": "2.8",
+  "Kill participation": "49.9%",
+  "Vision score": "0.95",
+  "Damage": "24.5",
+  "Gold": "20.6"
+ },
+ {
+  "Player": "Gumayusi",
+  "Role": "Adc",
+  "KDA": "7.6",
+  "Kill participation": "66.1%",
+  "Vision score": "1.35",
+  "Damage": "25.3",
+  "Gold": "24.8"
+ },
+ {
+  "Player": "Keria",
+  "Role": "Support",
+  "KDA": "7.6",
+  "Kill participation": "75.9%",
+  "Vision score": "2.36",
+  "Damage": "10.7",
+  "Gold": "14"
+ }
+]
