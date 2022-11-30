@@ -155,54 +155,6 @@ body{
   background-color: #010914;
 }
 
-.donut {
-  width: 150px; height: 150px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  margin-top: 1.5em;
-
-  background: conic-gradient(
-    #e7bd3b 0deg 90deg,
-    #e7bd3b 90deg 180deg,
-    #131c43 180deg 360deg
-  );
-}
-
-.hole {
-  width: 120px; height: 120px;
-  border-radius: 50%;
-  background: #0b1a2f;
-}
- 
-.procent{
-  text-align: center;
-  margin-top: -3.65em;
-  margin-right: 1em;
-  font-weight: 100;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.donut2 {
-  width: 150px; height: 150px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  margin-top: 1.5em;
-
-  background: conic-gradient(
-    #e7bd3b 0deg 44deg,
-    #e7bd3b 44deg 88deg,
-    #131c43 88deg 360deg
-  );
-}
-
 button{
   margin-top: 2em;
   margin-bottom: 2em;
