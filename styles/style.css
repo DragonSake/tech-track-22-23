@@ -21,7 +21,6 @@ h1 {
 main {
   display: grid;
   grid-template-columns: 1fr 2fr 1.5fr;
-  /* grid-template-rows: 1fr 1fr; */
   gap: 1.5em;
   margin: 2em 5em;
 }
@@ -100,10 +99,6 @@ p{
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding-bottom: 30px;
-}
-
-svg{
-  height: 450px;
 }
 
 .svg1{
