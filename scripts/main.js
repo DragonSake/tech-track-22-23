@@ -4,7 +4,7 @@ import "../styles/style.css";
 // We can use node_modules directely in the browser!
 import * as d3 from "d3";
 
-fetch("public/lol.json")
+fetch("lol.json")
   .then((response) => response.json())
   .then((dataSet) => {
     gold(dataSet), kills(dataSet), dmg(dataSet);
