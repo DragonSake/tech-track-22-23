@@ -6,52 +6,46 @@ import * as d3 from "d3";
 
 fetch("lol.json")
   .then((response) => response.json())
-  .then((dataSet) =>  {
-    gold(dataSet),
-    visionkda(dataSet),
-    kills(dataSet);
-  } );
+  .then((dataSet) => {
+    gold(dataSet), kills(dataSet), dmg(dataSet);
+  });
 
-function gold(dataSet)  {
-    const chartWidth = 400;
-    const chartHeight = 160;
-    
-    const xScale = d3
-      .scaleLinear()
-      .domain([0, d3.max(dataSet, (d) => d.Gold)])
-      .range([0, chartWidth]);
-    
-    const yScale = d3
-      .scaleBand()
-      .domain(d3.map(dataSet, (d) => d.Player))
-      .range([0, chartHeight])
-      .paddingInner(0.6);
-    
-    const bars = d3.select("#bars").selectAll("g").data(dataSet).join("g");
-    
-    bars
-      .append("rect")
-      .attr("height", yScale.bandwidth())
-      .attr("width", (d) => xScale(d.Gold))
-      .attr("y", (d) => yScale(d.Player))
-      .attr("rx", 7);
-    
-    bars
-      .append("text")
-      .attr("y", (d) => yScale(d.Player) + yScale.bandwidth() / 2)
-      .attr("x", (d) => xScale(d.Gold) + 40)
-      .text((d) => d.Gold);
-    
-    d3.select("#labels")
-      .selectAll("text")
-      .data(dataSet)
-      .join("text")
-      .attr("y", (d) => yScale(d.Player) + yScale.bandwidth() / 2)
-      .text((d) => d.Player);
-}
+function gold(dataSet) {
+  const chartWidth = 400;
+  const chartHeight = 160;
 
-function visionkda(dataSet){
+  const xScale = d3
+    .scaleLinear()
+    .domain([0, d3.max(dataSet, (d) => d.Gold)])
+    .range([0, chartWidth]);
 
+  const yScale = d3
+    .scaleBand()
+    .domain(d3.map(dataSet, (d) => d.Player))
+    .range([0, chartHeight])
+    .paddingInner(0.6);
+
+  const bars = d3.select("#bars").selectAll("g").data(dataSet).join("g");
+
+  bars
+    .append("rect")
+    .attr("height", yScale.bandwidth())
+    .attr("width", (d) => xScale(d.Gold))
+    .attr("y", (d) => yScale(d.Player))
+    .attr("rx", 7);
+
+  bars
+    .append("text")
+    .attr("y", (d) => yScale(d.Player) + yScale.bandwidth() / 2)
+    .attr("x", (d) => xScale(d.Gold) + 40)
+    .text((d) => d.Gold);
+
+  d3.select("#labels")
+    .selectAll("text")
+    .data(dataSet)
+    .join("text")
+    .attr("y", (d) => yScale(d.Player) + yScale.bandwidth() / 2)
+    .text((d) => d.Player);
 }
 
 const data1 = [
@@ -91,6 +85,7 @@ const x = d3
     })
   )
   .padding(0.2);
+
 svg
   .append("g")
   .attr("transform", "translate(0," + height + ")")
@@ -154,122 +149,136 @@ button2.addEventListener("click", function () {
   update(data2);
 });
 
-function kills(dataSet, player = 2){
-    console.log("kill data", dataSet[player]);
-    
-    let pieData = [dataSet[player].Kill, 100-dataSet[player].Kill];
-    
-    var text = "";
-  
-    var width = 180;
-    var height = 180;
-    var thickness = 20;
-    
-    var radius = Math.min(width, height) / 2;
-    
-    function color(d, i){
-      if (i === 0){
-        return '#e7bd3b'
-      }else {
-        return "#131c43"
-      }
+function kills(dataSet, player = 2) {
+  console.log("kill data", dataSet[player]);
+
+  let pieData = [dataSet[player].Kill, 100 - dataSet[player].Kill];
+
+  var text = "";
+
+  var width = 180;
+  var height = 180;
+  var thickness = 20;
+
+  var radius = Math.min(width, height) / 2;
+
+  function color(d, i) {
+    if (i === 0) {
+      return "#e7bd3b";
+    } else {
+      return "#131c43";
     }
-    
-    var svg = d3.select(".donut")
-    .append('svg')
-    .attr('class', 'pie')
-    .attr('width', width)
-    .attr('height', height);
-    
-    var g = svg.append('g')
-    .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
-    
-    var arc = d3.arc()
+  }
+
+  var svg = d3
+    .select(".donut")
+    .append("svg")
+    .attr("class", "pie")
+    .attr("width", width)
+    .attr("height", height);
+
+  var g = svg
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  var arc = d3
+    .arc()
     .innerRadius(radius - thickness)
     .outerRadius(radius);
-    
-    var pie = d3.pie()
-    .value(function(d) { return d })
+
+  var pie = d3
+    .pie()
+    .value(function (d) {
+      return d;
+    })
     .sort(null);
-    
-    var path = g.selectAll('path')
+
+  var path = g
+    .selectAll("path")
     .data(pie(pieData))
     .enter()
     .append("g")
-      .append('path')
-      .attr('d', arc)
-      .attr('fill', (d, i) => color(d, i))
-      .each(function(d, i) { this._current = i; });
-    
-    g.append('text')
-      .attr('text-anchor', 'middle')
-      .attr('dy', '.35em')
-      .text(text);
-    
-    svg.append("svg:text")
-        .attr("dx", "90px")
-        .attr("dy", "100px")
-        .attr("text-anchor", "middle")
-        .attr("font-size","40")
-        .text(dataSet[player].Kill);
+    .append("path")
+    .attr("d", arc)
+    .attr("fill", (d, i) => color(d, i))
+    .each(function (d, i) {
+      this._current = i;
+    });
+
+  g.append("text").attr("text-anchor", "middle").attr("dy", ".35em").text(text);
+
+  svg
+    .append("svg:text")
+    .attr("dx", "90px")
+    .attr("dy", "100px")
+    .attr("text-anchor", "middle")
+    .attr("font-size", "40")
+    .text(dataSet[player].Kill);
 }
-  
-function dmg(dataSet, player = 2){
-    console.log("kill data", dataSet[player]);
-    
-    let pieData = [dataSet[player].Damage, 100-dataSet[player].Damage];
-    
-    var text = "";
-  
-    var width = 180;
-    var height = 180;
-    var thickness = 20;
-    
-    var radius = Math.min(width, height) / 2;
-    
-    function color(d, i){
-      if (i === 0){
-        return '#e7bd3b'
-      }else {
-        return "#131c43"
-      }
+
+function dmg(dataSet, player = 2) {
+  console.log("damage data", dataSet[player]);
+
+  let pieData = [dataSet[player].Damage, 100 - dataSet[player].Damage];
+
+  var text = "";
+
+  var width = 180;
+  var height = 180;
+  var thickness = 20;
+
+  var radius = Math.min(width, height) / 2;
+
+  function color(d, i) {
+    if (i === 0) {
+      return "#e7bd3b";
+    } else {
+      return "#131c43";
     }
-    
-    var svg = d3.select(".donut2")
-    .append('svg')
-    .attr('class', 'pie')
-    .attr('width', width)
-    .attr('height', height);
-    
-    var g = svg.append('g')
-    .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
-    
-    var arc = d3.arc()
+  }
+
+  var svg = d3
+    .select(".donut2")
+    .append("svg")
+    .attr("class", "pie")
+    .attr("width", width)
+    .attr("height", height);
+
+  var g = svg
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  var arc = d3
+    .arc()
     .innerRadius(radius - thickness)
     .outerRadius(radius);
-    
-    var pie = d3.pie()
-    .value(function(d) { return d })
+
+  var pie = d3
+    .pie()
+    .value(function (d) {
+      return d;
+    })
     .sort(null);
-    
-    var path = g.selectAll('path')
+
+  var path = g
+    .selectAll("path")
     .data(pie(pieData))
     .enter()
     .append("g")
-      .append('path')
-      .attr('d', arc)
-      .attr('fill', (d, i) => color(d, i))
-      .each(function(d, i) { this._current = i; });
-    
-    g.append('text')
-      .attr('text-anchor', 'middle')
-      .attr('dy', '.35em')
-      .text(text);
-    
-    svg.append("svg:text")
-        .attr("dx", "90px")
-        .attr("dy", "100px")
-        .attr("text-anchor", "middle")
-        .attr("font-size","40")
-        .text(dataSet[player].Damage);
+    .append("path")
+    .attr("d", arc)
+    .attr("fill", (d, i) => color(d, i))
+    .each(function (d, i) {
+      this._current = i;
+    });
+
+  g.append("text").attr("text-anchor", "middle").attr("dy", ".35em").text(text);
+
+  svg
+    .append("svg:text")
+    .attr("dx", "90px")
+    .attr("dy", "100px")
+    .attr("text-anchor", "middle")
+    .attr("font-size", "40")
+    .text(dataSet[player].Damage);
 }

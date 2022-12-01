@@ -190,3 +190,9 @@ button:first-of-type{
   align-items: center;
   justify-content: center;
 }
+
+.pie{
+  display: block;
+  margin: auto;
+  margin-top: 2em;
+}
