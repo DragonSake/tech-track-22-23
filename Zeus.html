@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech-track Boilerplate App</title>
+  </head>
+  <body>
+    <h1>T1 stats Worlds 2022</h1>
+
+    <form action="/action_page.php">
+      <label class="choose">Player:</label>
+      <select
+        name="spelers"
+        id="speler"
+        onchange="window.location.href=this.value"
+      >
+        <option value="Zeus.html" selected>Zeus</option>
+        <option value="Oner.html">Oner</option>
+        <option value="index.html">Faker</option>
+        <option value="Gumayusi.html">Gumayusi</option>
+        <option value="Keria.html">Keria</option>
+      </select>
+    </form>
+
+    <main>
+      <section class="profile">
+        <img src="./images/Zeus.PNG" alt="profile pic">
+        <h2>Zeus</h2>
+        <p>T1</p>
+      </section>
+
+      <section class="container">
+        <h2>Gold Zeus vs his team</h2>
+        <svg class="svg1" viewBox="0 60 550 50">
+          <g id="bars" transform="translate(90, 0)"></g>
+          <g id="labels"></g>
+        </svg>
+      </section>
+
+      <section class="container2">
+        <h2>Vision score and KDA</h2>
+        <button>Vision score</button>
+        <button>KDA</button>
+
+        <div class="my_dataviz"></div>
+      </section>
+
+      <section class="container3">
+        <h2>Role</h2>
+        <p>Toplane</p>
+        <img src="./images/Top.png" alt="Top" class="lane">
+        <p>
+          Most played Champion: Jayce.
+        </p>
+      </section>
+
+      <section class="container4">
+        <h2>Kill participation</h2>
+
+        <h2>Damage</h2>
+
+        <div class="donut"></div>
+
+        <div class="donut2"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
+</html>
